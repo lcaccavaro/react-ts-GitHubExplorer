@@ -8569,6 +8569,13 @@ pnp-webpack-plugin@1.6.4:
   dependencies:
     ts-pnp "^1.1.6"
 
+polished@^4.0.5:
+  version "4.0.5"
+  resolved "https://repository.deere.com/artifactory/api/npm/jdf-release-npm/polished/-/polished-4.0.5.tgz#3f91873c8f72dec1723b3f892f57fbb22645b23d"
+  integrity sha1-P5GHPI9y3sFyOz+JL1f7siZFsj0=
+  dependencies:
+    "@babel/runtime" "^7.12.5"
+
 portfinder@^1.0.26:
   version "1.0.28"
   resolved "https://repository.deere.com/artifactory/api/npm/jdf-release-npm/portfinder/-/portfinder-1.0.28.tgz#67c4622852bd5374dd1dd900f779f53462fac778"
@@ -9562,6 +9569,11 @@ react-error-overlay@^6.0.8:
   version "6.0.8"
   resolved "https://repository.deere.com/artifactory/api/npm/jdf-release-npm/react-error-overlay/-/react-error-overlay-6.0.8.tgz#474ed11d04fc6bda3af643447d85e9127ed6b5de"
   integrity sha1-R07RHQT8a9o69kNEfYXpEn7Wtd4=
+
+react-icons@^4.1.0:
+  version "4.1.0"
+  resolved "https://repository.deere.com/artifactory/api/npm/jdf-release-npm/react-icons/-/react-icons-4.1.0.tgz#9ca9bcbf2e3aee8e86e378bb9d465842947bbfc3"
+  integrity sha1-nKm8vy467o6G43i7nUZYQpR7v8M=
 
 react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1:
   version "16.13.1"
