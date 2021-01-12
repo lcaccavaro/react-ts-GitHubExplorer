@@ -1,55 +1,61 @@
-import React from 'react';
+import React, { FormEvent, useState } from 'react';
 import { FiChevronRight } from 'react-icons/fi'
 import { Title, Form, Repositories } from './style';
 
 import LogoSvg from '../../assets/Logo.svg';
 
+import { Api } from '../../services/api';
+
+interface Repository {
+  full_name: string;
+  description: string;
+  owner: {
+    login: string;
+    avatar_url: string;
+  };
+}
+
 const Dashboard: React.FC = () => {
+
+  const [newRepo, setNewRepo] = useState('');
+  const [repositories, setRepositories] = useState<Repository[]>([]);
+
+  async function handleRepositories(event: FormEvent<HTMLFormElement>): Promise<void> {
+    event.preventDefault();
+
+    const response = await Api.get<Repository>(`repos/${newRepo}`);
+    const repository = response.data;
+
+    setRepositories([...repositories, repository]);
+    setNewRepo('');
+  }
+
   return (
     <>
       <img src={LogoSvg} />
       <Title>Explore repositórios no Github.</Title>
-      <Form>
-        <input placeholder="Digite o nome do repositório" />
+      <Form onSubmit={handleRepositories}>
+        <input placeholder="Digite o nome do repositório"
+          value={newRepo}
+          onChange={(e) => setNewRepo(e.target.value)}
+        />
         <button type="submit">Pesquisar</button>
       </Form>
       <Repositories>
-        <a href='test'>
-          <img
-            src='https://avatars1.githubusercontent.com/u/40892464?s=460&u=4b21e0779f183df367942e0f232c2f4c3c40d2e6&v=4'
-            alt='Lucas Caccavaro'
-          />
-          <div>
-            <strong>lcaccavaro/node-ts-appointmentsApi</strong>
-            <p>Node Typescript - Appointments API - Basic Node concepts for API and Unit tests. Typescript and TypeORM</p>
-          </div>
+        {repositories.map(repository => (
+          <a key={repository.full_name} href='test'>
+            <img
+              src={repository.owner.avatar_url}
+              alt={repository.owner.login}
+            />
+            <div>
+              <strong>{repository.full_name}</strong>
+              <p>{repository.description}</p>
+            </div>
 
-          <FiChevronRight size={20} />
-        </a>
-        <a href='test'>
-          <img
-            src='https://avatars1.githubusercontent.com/u/40892464?s=460&u=4b21e0779f183df367942e0f232c2f4c3c40d2e6&v=4'
-            alt='Lucas Caccavaro'
-          />
-          <div>
-            <strong>lcaccavaro/node-ts-appointmentsApi</strong>
-            <p>Node Typescript - Appointments API - Basic Node concepts for API and Unit tests. Typescript and TypeORM</p>
-          </div>
-
-          <FiChevronRight size={20} />
-        </a>
-        <a href='test'>
-          <img
-            src='https://avatars1.githubusercontent.com/u/40892464?s=460&u=4b21e0779f183df367942e0f232c2f4c3c40d2e6&v=4'
-            alt='Lucas Caccavaro'
-          />
-          <div>
-            <strong>lcaccavaro/node-ts-appointmentsApi</strong>
-            <p>Node Typescript - Appointments API - Basic Node concepts for API and Unit tests. Typescript and TypeORM</p>
-          </div>
-
-          <FiChevronRight size={20} />
-        </a>
+            <FiChevronRight size={20} />
+          </a>
+        ))}
       </Repositories>
     </>
   );
