@@ -8,7 +8,7 @@ import Routes from './routes';
 function App() {
   return (
     <>
-      <BrowserRouter>
+      <BrowserRouter basename='/'>
         <Routes />
       </BrowserRouter>
       <GlobalStyle />
