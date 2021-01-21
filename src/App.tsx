@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 
 import GlobalStyle from './styles/global';
 
@@ -8,9 +8,10 @@ import Routes from './routes';
 function App() {
   return (
     <>
-      <BrowserRouter basename='/'>
+      {/* Changed BrowserRouter to HashRouter because of GitHub Pages */}
+      <HashRouter basename='/'>
         <Routes />
-      </BrowserRouter>
+      </HashRouter>
       <GlobalStyle />
     </>
   );
